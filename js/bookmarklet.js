@@ -81,7 +81,23 @@ function dom_traverse() {
     }
   }
 
-  console.log(out);
+  //create div
 
-  return out;
+  var div = document.createElement('div');
+  div.id="dom_cloud_container";
+  document.getElementsByTagName('body')[0].appendChild(div);
+
+  //write to div
+  var keys = Object.keys(out);
+
+  var stringOut = "";
+
+  for(var i = 0;i<keys.length;i++) {
+
+    stringOut = stringOut + '<font size="' + Math.floor(out[keys[i]]/7) + '">' + keys[i] + '</font><br>';
+  }
+
+  document.getElementById("dom_cloud_container").innerHTML = stringOut;
+
+  //console.log(out);
 };

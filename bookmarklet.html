@@ -1,5 +1,4 @@
-function dom_traverse() {
-
+<a href="javascript:(function() {
   function add(name) {
 
     if(nameCounts.hasOwnProperty(name)) {
@@ -40,14 +39,11 @@ function dom_traverse() {
       traverse(root.nextSibling);
     }
   };
-
   var nameCounts = {};
 
   var root = document.body.parentNode;
 
   traverse(root);
-
-  //sort
 
   var hits = [];
 
@@ -59,8 +55,6 @@ function dom_traverse() {
   }
 
   hits = hits.sort(function(x,y) { return y-x;});
-
-  //get highest 20
 
   var out = {};
   var index = -1;
@@ -81,7 +75,25 @@ function dom_traverse() {
     }
   }
 
-  console.log(out);
+  var div = document.createElement('div');
+  div.id='dom_cloud_container';
+  document.getElementsByTagName('body')[0].appendChild(div);
 
-  return out;
-};
+  var keys = Object.keys(out);
+
+  var fontOut = null;
+
+  for(var i = 0;i<keys.length;i++) {
+
+    fontOut = document.createElement('font');
+    fontOut.innerHTML = keys[i];
+    fontOut.setAttribute('size',out[keys[i]]);
+    document.getElementById('dom_cloud_container').appendChild(fontOut);
+    document.getElementById('dom_cloud_container').innerHTML =
+      document.getElementById('dom_cloud_container').innerHTML + '<br>';
+  }
+})()">dom word cloud</a>
+
+<!-- var jsCode = document.createElement('script');
+  jsCode.setAttribute('src', 'js/bookmarklet.js');
+  document.body.appendChild(jsCode); -->
